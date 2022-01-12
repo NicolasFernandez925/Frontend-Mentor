@@ -1,4 +1,4 @@
-import { useCallback, useReducer } from "react";
+import { useCallback, useMemo, useReducer } from "react";
 import { ProductContext } from "./ProductContext";
 import restService from "../../services/productServices.js";
 import { productReducer } from "./productReducer";
@@ -60,17 +60,18 @@ export const ProductProvider = ({ children }: Props) => {
     });
   }, []);
 
+  const value = useMemo(
+    () => ({
+      stateProduct,
+      emptyCart,
+      removeProductCart,
+      getProduct,
+      addProductCart,
+    }),
+    [stateProduct, emptyCart, removeProductCart, addProductCart, getProduct]
+  );
+
   return (
-    <ProductContext.Provider
-      value={{
-        stateProduct,
-        addProductCart,
-        getProduct,
-        removeProductCart,
-        emptyCart,
-      }}
-    >
-      {children}
-    </ProductContext.Provider>
+    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
   );
 };

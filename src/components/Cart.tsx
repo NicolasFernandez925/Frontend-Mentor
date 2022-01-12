@@ -9,7 +9,7 @@ interface IProps {
 
 export const Cart = React.memo(({ toggle }: IProps) => {
   const { stateProduct, emptyCart, removeProductCart } = useProduct();
-  const { quantity, cart } = stateProduct;
+  const { cart, quantity } = stateProduct;
 
   return (
     <div
