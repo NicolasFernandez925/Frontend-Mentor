@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 import { ProductContext } from "./ProductContext";
 import restService from "../../services/productServices.js";
 import { productReducer } from "./productReducer";
@@ -47,18 +47,18 @@ export const ProductProvider = ({ children }: Props) => {
     dispatch({ type: GET_PRODUCT, payload: data });
   };
 
-  const removeProductCart = (id: String): void => {
+  const removeProductCart = useCallback((id: String) => {
     dispatch({
       type: REMOVE_PRODUCT_CART,
       payload: id,
     });
-  };
+  }, []);
 
-  const emptyCart = (): void => {
+  const emptyCart = useCallback(() => {
     dispatch({
       type: EMPTY_CART,
     });
-  };
+  }, []);
 
   return (
     <ProductContext.Provider
