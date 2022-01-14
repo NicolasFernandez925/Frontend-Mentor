@@ -35,9 +35,11 @@ export const Cart = React.memo(({ toggle }: IProps) => {
           <p className="error__cart">Product not found in cart</p>
         )}
       </div>
-      <button onClick={() => emptyCart()} className="btn__checkout">
-        Clear all
-      </button>
+      {quantity > 0 && (
+        <button onClick={() => emptyCart()} className="btn__checkout">
+          Clear all
+        </button>
+      )}
     </div>
   );
 });

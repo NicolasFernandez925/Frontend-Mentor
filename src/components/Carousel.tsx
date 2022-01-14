@@ -12,8 +12,11 @@ export const Carousel: React.FC = () => {
     product: { images },
   } = stateProduct;
 
+  let pathImages: String[] = [];
+
   let imagesNode: JSX.Element[] = images.map(
     (nameImg: String, index: number) => {
+      pathImages.push(`../assets/${nameImg}`);
       return (
         <img
           onClick={() => setToggler(!toggler)}

@@ -3,7 +3,7 @@ import avatar from "../assets/image-avatar.png";
 import logo from "../assets/logo.svg";
 import iconCart from "../assets/icon-cart.svg";
 import { MdClose } from "react-icons/md";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useProduct from "../hooks/useProduct";
 import { Cart } from "./Cart";
 
@@ -13,11 +13,13 @@ export const Header: React.FC = () => {
   const { stateProduct } = useProduct();
   const { quantity } = stateProduct;
 
+  const ref = useRef<HTMLElement | null>(null);
+
   const closeModalCart = (e: any) => {
     e.preventDefault();
-    let element = document.querySelector(".navbar") as HTMLElement;
     const target = e.target;
-    if (!element.contains(target)) {
+    if (ref.current && !ref.current.contains(target)) {
+      console.log(ref.current, target);
       setToggle(false);
     }
   };
@@ -39,7 +41,7 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav ref={ref} className="navbar">
       <div
         onClick={() => openMenu()}
         className={`${menu ? "backgound__opacity" : ""}`}
