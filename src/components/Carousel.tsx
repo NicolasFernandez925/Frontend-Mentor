@@ -3,6 +3,7 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import useProduct from "../hooks/useProduct";
 import { Ligthbox } from "./Ligthbox";
+import useSlider from "./../hooks/useSlider";
 
 export const Carousel: React.FC = () => {
   const [toggler, setToggler] = useState<boolean>(false);
@@ -29,19 +30,21 @@ export const Carousel: React.FC = () => {
     }
   );
 
+  const { index, prevImage, nextImage } = useSlider<String>(pathImages);
+
   return (
     <>
       <div className="container__img__carousel">
         <img
           className="img_product__carousel"
-          src={images[0] ? require(`../assets/${images[0]}`) : ""}
+          src={images[index] ? require(`../assets/${images[index]}`) : ""}
           alt=""
         />
       </div>
-      <button className="btn_prev_img">
+      <button onClick={prevImage} className="btn_prev_img">
         <MdArrowBackIosNew className="icon__prev" />
       </button>
-      <button className="btn_next_img">
+      <button onClick={nextImage} className="btn_next_img">
         <MdArrowForwardIos className="icon_next" />
       </button>
       <Ligthbox images={images} imagesNode={imagesNode} toggler={toggler} />

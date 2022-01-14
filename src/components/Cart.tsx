@@ -32,7 +32,7 @@ export const Cart = React.memo(({ toggle }: IProps) => {
             />
           ))
         ) : (
-          <p className="error__cart">Product not found in cart</p>
+          <p className="error__cart">Your cart is empty</p>
         )}
       </div>
       {quantity > 0 && (

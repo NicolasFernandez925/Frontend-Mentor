@@ -19,7 +19,6 @@ export const Header: React.FC = () => {
     e.preventDefault();
     const target = e.target;
     if (ref.current && !ref.current.contains(target)) {
-      console.log(ref.current, target);
       setToggle(false);
     }
   };
